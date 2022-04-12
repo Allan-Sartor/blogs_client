@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../services/api";
 
-import { Header } from "../Header/Header";
 import { ArticleInfo } from "./ArticleInfo";
 import { ReviewForm } from "./ReviewForm";
 import { ReviewItem } from "./ReviewItem";
@@ -12,7 +11,6 @@ import { Container, Context } from "./styles";
 
 export const Article = (props) => {
   const { slug } = useParams();
-
   const [article, setArticle] = useState({});
   const [review, setReview] = useState({});
   const [loaded, setLoaded] = useState(false);
@@ -25,7 +23,7 @@ export const Article = (props) => {
       setArticle(response.data);
       setLoaded(true);
     });
-  }, [loaded]);
+  }, [slug]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -65,7 +63,6 @@ export const Article = (props) => {
 
   return (
     <>
-      <Header />
       <Container>
         {loaded && (
           <Context>

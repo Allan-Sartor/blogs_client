@@ -1,5 +1,6 @@
 import React from "react";
-import { ContainerItem } from "./styles";
+import { Rating } from "../Rating/Rating";
+import { ContainerItem, RatingContainer } from "./styles";
 
 export const ReviewItem = (props) => {
   const { title, description, score } = props.attributes;
@@ -12,10 +13,9 @@ export const ReviewItem = (props) => {
           <b>Descrição:</b> {description}
         </p>
       </div>
-      <div>
-          <h5>Nota</h5>
-          <p>{score}</p>
-      </div>
+      <RatingContainer>
+        <Rating score={score} /> 
+      </RatingContainer>
     </ContainerItem>
   );
 };

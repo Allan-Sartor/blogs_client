@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ArticleBox, Container, Footer, Score } from './styles';
 
+import { Rating } from '../Rating/Rating';
 import { api } from '../../services/api';
 
 export const Articles = () => {
+  // API List articles home
   const [articles, setArticles] = useState([])
 
   useEffect(() => {
@@ -21,7 +23,9 @@ export const Articles = () => {
               <h1>{article.attributes.title}</h1>
               <p>{article.attributes.body}</p>
             </div>
-            <Score>{article.attributes.avg_score.toFixed(1)}</Score>
+            <Score>
+              <Rating score={article.attributes.avg_score.toFixed(1)} />
+            </Score>
             <Footer>
               Data de criação:
               {new Intl.DateTimeFormat("pt-br").format(

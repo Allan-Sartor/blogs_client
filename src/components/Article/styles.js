@@ -23,7 +23,7 @@ export const Context = styled.div`
 
 }
 .review { 
-  grid-area: 1 / 2 / 2 / 3; 
+  grid-area: 1 / 2 / 2 / 3;
 }
 .evaluations { 
   grid-area: 2 / 1 / 3 / 3; 
@@ -45,7 +45,8 @@ export const Context = styled.div`
 `;
 
 export const RatingContainer = styled.div`
-  text-align: center;
+  display: flex;
+  flex-direction: row;
   font-size: 1rem;
   padding: 1rem 0 2rem 0;
 
@@ -100,7 +101,9 @@ export const Form = styled.form`
     height: 2rem;
     background: var(--background);
     border: none;
+    padding: 0 0.40rem;
     border-radius: 0.25rem;
+    font-size: 1rem;
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
@@ -108,8 +111,10 @@ export const Form = styled.form`
   textarea {
     background: var(--background);
     width: 23rem;
+    padding: 0.25rem 0.40rem;
     height: 6rem;
     border: none;
+    font-size: 1rem;
     border-radius: 0.25rem;
     resize: vertical;
 
@@ -125,11 +130,12 @@ export const Form = styled.form`
     font-size: 1rem;
     width: 23rem;
     color: #FFF;
-    background: var(--blue-light);
+    background: var(--green);
     border: 0;
     padding: 0 2rem;
     border-radius: 0.25rem;
     height: 3rem;
+    font-weight: bold;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     transition: filter 0.2s;
@@ -183,4 +189,16 @@ export const ContainerItem = styled.div`
       }
     }
   }
+`
+
+export const RatingContent = styled.div`
+  text-align: center;
+  font-size: 1rem;
+  padding: 1rem 0 2rem 0;
+
+  h5 {
+    color: var(--text-title);
+    font-weight: bold;
+  }
+
 `
