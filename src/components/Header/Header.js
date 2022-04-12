@@ -4,6 +4,7 @@ import Modal from "react-modal/lib/components/Modal";
 import { Button } from "../Button";
 
 import { Container, Content, ModalContainer } from "./styles";
+import closeImg from '../../assets/close.svg';
 
 export const Header = (props) => {
   const isOpenNewArticleModalOpen = props.isOpen
@@ -68,16 +69,25 @@ export const Header = (props) => {
           className="react-modal-content"
         >
           <ModalContainer onSubmit={handleSubmit}>
+            <button type="button" onClick={handleCloseNewArticleModal} className="react-modal-close">
+              <img src={closeImg} alt="Fechar modal"></img>
+            </button>
             <h2>Cadastrar Artigo</h2>
             <input
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {
+                e.preventDefault();
+                setTitle(e.target.value)
+              }}
               value={title || ""}
               type="text"
               name="title"
               placeholder="Titulo"
             />
             <textarea 
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {
+                e.preventDefault();
+                setDescription(e.target.value)
+              }}
               value={description || ""}
               type="text"
               name="description"
