@@ -1,56 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal/lib/components/Modal";
 
 import { Button } from "../Button";
 
 import { Container, Content, ModalContainer } from "./styles";
 import closeImg from '../../assets/close.svg';
+import { api } from "../../services/api";
 
-export const Header = (props) => {
-  const isOpenNewArticleModalOpen = props.isOpen
-  const handleOpenNewArticleModal = props.openModal
-  const handleCloseNewArticleModal = props.closeModal
+export const Header = () => {
+  const [isOpenNewArticleModalOpen, setIsOpenNewArticleModalOpen] = useState(false)
 
   const [ title, setTitle ] = useState("");
-  const [ description, setDescription ] = useState("");
+  const [ body, setBody ] = useState("");
+  const [ article, setArticle ] = useState({})
+  const [ published, setPublished ] = useState(false)
+  
+  const handleOpenNewArticleModal = () => {
+    setIsOpenNewArticleModalOpen(true);
+  }
+
+  const handleCloseNewArticleModal = () => {
+    setIsOpenNewArticleModalOpen(false);
+  }
 
   const handleSubmit = async () => {
-    await fetch(`http://localhost:3001/api/v1/articles`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        article: { title: title, description: description },
-      }),
-    });
-    setTitle("");
-    setDescription("");
-    alert("Artigo publicado com sucesso!");
-
-    // await api.fetch('articles',)
-    // // await api.post("articles/")
-    // //   setArticle({ ...article });
-    // //   alert("Artigo publicado com sucesso!");
-    // //   setArticle({ title: "", description: "" });
-  };
-
-  
-
-  // const handleChange = (e) => {
-  //   e.preventDefault();
-
-  //   setArticle(Object.assign({}, article, { [e.target.name]: e.target.value }));
-
-  //   console.log('article:', article)
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   
-  // };
+    await api.post("articles", article)
+        .then((response) => setArticle(response.data))
+        .catch((err) => {
+          alert('Não foi possivel publicar seu artigo', err)
+          setPublished(true);
+        });
+    if (published) {
+      alert('Seu artigo foi publicado!')
+      setTitle("");
+      setBody("");
+      setArticle({})
+    }
+  }
 
   return (
     <Container>
@@ -77,6 +63,7 @@ export const Header = (props) => {
               onChange={(e) => {
                 e.preventDefault();
                 setTitle(e.target.value)
+                setArticle(Object.assign({}, article, {title: title, body: body}))
               }}
               value={title || ""}
               type="text"
@@ -86,11 +73,13 @@ export const Header = (props) => {
             <textarea 
               onChange={(e) => {
                 e.preventDefault();
-                setDescription(e.target.value)
+                setBody(e.target.value)
+                setArticle(Object.assign({}, article, {title: title, body: body}))
+                
               }}
-              value={description || ""}
+              value={body || ""}
               type="text"
-              name="description"
+              name="body"
               placeholder="Descrição" 
             />
             <Button type="submit" name="Cadastrar artigo" style="btn-success" />

@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { ArticleBox, Container, Footer, Score } from './styles';
 
 import { Rating } from '../Rating/Rating';
-import { api } from '../../services/api';
 
-export const Articles = () => {
-  // API List articles home
-  const [articles, setArticles] = useState([])
-
-  useEffect(() => {
-    api.get("articles").then((resp) => setArticles(resp.data.data))
-  }, [articles.length]);
+export const Articles = (props) => {
+  const articlesNew = props.loadArticles
 
   return (
     <Container>
-      {articles.map((article) => (
+      {articlesNew.map((article) => (
         <Link to={`/articles/${article.attributes.slug}`}>
           <ArticleBox key={article.attributes.id}>
             <div>
