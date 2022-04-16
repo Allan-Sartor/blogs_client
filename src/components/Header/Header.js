@@ -10,20 +10,22 @@ import { Button } from "../Button";
 
 export const Header = () => {
   const [isOpenNewArticleModalOpen, setIsOpenNewArticleModalOpen] = useState(false)
-
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [article, setArticle] = useState({})
 
+  // Open Modal
   const handleOpenNewArticleModal = () => {
     setIsOpenNewArticleModalOpen(true);
   }
 
+  // Close Modal
   const handleCloseNewArticleModal = () => {
     setIsOpenNewArticleModalOpen(false);
   }
 
-  const handleSubmit = async () => {
+  // Create New Article
+  const hanldeCreateNewArticle = async () => {
     await api.post("articles", article)
       .then((response) => setArticle(response.data))
       .catch((err) => {
@@ -32,9 +34,8 @@ export const Header = () => {
     alert('Seu artigo foi publicado!')
     setTitle("");
     setBody("");
-    setArticle({})
   }
-
+  
   return (
     <Container>
       <Content>
@@ -51,7 +52,7 @@ export const Header = () => {
           overlayClassName="react-modal-overlay"
           className="react-modal-content"
         >
-          <ModalContainer onSubmit={handleSubmit}>
+          <ModalContainer onSubmit={hanldeCreateNewArticle}>
             <button type="button" onClick={handleCloseNewArticleModal} className="react-modal-close">
               <img src={closeImg} alt="Fechar modal"></img>
             </button>
@@ -62,7 +63,7 @@ export const Header = () => {
                 setTitle(e.target.value)
                 setArticle(Object.assign({}, article, { title: title, body: body }))
               }}
-              value={title || ""}
+              value={title}
               type="text"
               name="title"
               placeholder="Titulo"
@@ -72,9 +73,8 @@ export const Header = () => {
                 e.preventDefault();
                 setBody(e.target.value)
                 setArticle(Object.assign({}, article, { title: title, body: body }))
-
               }}
-              value={body || ""}
+              value={body}
               type="text"
               name="body"
               placeholder="Descrição"

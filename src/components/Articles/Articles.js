@@ -8,12 +8,14 @@ import { Rating } from '../Rating/Rating';
 export const Articles = () => {
   const [ articles, setArticles ] = useState([])
 
+  // Get data for articles
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch("http://localhost:3001/api/v1/articles");
+      let url = "http://localhost:3001/api/v1/articles"
+      let response = await fetch(url);
       response = await response.json();
       setArticles(response.data);
-      console.log(response);
+      console.log("List", response);
     }
 
     fetchMyAPI()
@@ -21,8 +23,8 @@ export const Articles = () => {
 
   return (
     <Container>
-      {articles.map((i) => (
-          <ArticleBox key={i.attributes.id}>
+      { articles.map((i) => (
+          <ArticleBox key={i.attributes.slug}>
             <div>
               <h1>{i.attributes.title}</h1>
               <p>{i.attributes.body}</p>

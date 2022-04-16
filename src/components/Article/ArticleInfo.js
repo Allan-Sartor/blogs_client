@@ -7,13 +7,12 @@ export const ArticleInfo = (props) => {
   const { slug, title, body, avg_score } = props.attributes
   const [slugg, setSlugg] = useState('');
   const total = props.reviews.length
-  console.log(props.attributes)
 
   async function handleDelete(slug) {
     console.log('handleslug', slug)
     await api.delete('articles/' + slug)
       .catch((err) => {
-        // alert('Não foi possivel publicar seu artigo', err)
+        alert('Não foi possivel deletar seu artigo', err)
       });
     alert('Seu artigo foi deletado!')
   }
@@ -37,7 +36,6 @@ export const ArticleInfo = (props) => {
         onClick={(e) => { 
           e.preventDefault();
           setSlugg(e.target.name)
-          console.log(slugg)
           handleDelete(slugg)
         }}
       >

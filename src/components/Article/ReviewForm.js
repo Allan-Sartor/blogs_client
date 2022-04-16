@@ -2,11 +2,12 @@ import React from "react";
 import { Form, RatingBox, RatingContent } from "./styles";
 
 export const ReviewForm = (props) => {
-  const ratingOptions = [5, 4, 3, 2, 1].map((score) => {
+  const ratingOptions = [5, 4, 3, 2, 1].map((score, index) => {
     return (
       <>
         <input
           type="radio"
+          key={index}
           value={score}
           checked={props.review.score === score}
           name="rating"
@@ -19,7 +20,7 @@ export const ReviewForm = (props) => {
   });
 
   return (
-    <Form onSubmit={props.handleSubmit}>
+    <Form onSubmit={props.handleCreateNewArticleReview}>
         <input
           onChange={props.handleChange}
           value={props.review.title}

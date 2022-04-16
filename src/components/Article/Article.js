@@ -14,44 +14,48 @@ export const Article = () => {
   const [article, setArticle] = useState({});
   const [review, setReview] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [isCreated, setIsCreated] = useState(false);
 
-  // Get our airline id
+  // Get data for article
   useEffect(() => {
-    const url = `/articles/${slug}`;
+    const url = `articles/${slug}`;
 
     api.get(url).then((response) => {
       setArticle(response.data);
       setLoaded(true);
     });
-  }, [review]);
+  }, [isCreated]);
 
+  // Seting data for New Review
   const handleChange = (e) => {
     e.preventDefault();
 
     setReview(Object.assign({}, review, { [e.target.name]: e.target.value }));
-
-    // console.log('review:', review)
+    // console.log('Seting data for New Article:', review)
   };
 
-  const handleSubmit = (e) => {
+  // Create new Review for article
+  const handleCreateNewArticleReview = async (e) => {
     e.preventDefault();
 
     const article_id = article.data.id;
 
-    api.post("reviews/", { review, article_id }).then((response) => {
+    await api.post("reviews/", { review, article_id }).then((response) => {
       const included = [...article.included, response.data.data];
       setArticle({ ...article, included });
       setReview({ title: "", description: "", score: 0 });
+      setIsCreated(true);
       alert("Analise publicada com sucesso!");
     });
   };
 
-  // set Score
+  // Seting score for Review
   const setRating = (score, e) => {
     e.preventDefault();
     setReview({ ...review, score });
   };
 
+  // Listing reviews for article
   let reviews
 
   if (loaded && article.included) {
@@ -74,9 +78,8 @@ export const Article = () => {
               <h1>Deixe sua avaliação</h1>
               <ReviewForm
                 handleChange={handleChange}
-                handleSubmit={handleSubmit}
+                handleCreateNewArticleReview={handleCreateNewArticleReview}
                 setRating={setRating}
-                attributes={article.data.attributes}
                 review={review}
               />
             </div>
