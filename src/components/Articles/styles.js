@@ -4,11 +4,11 @@ export const Container = styled.div`
   max-width: 1120px;
   margin: 0 auto;
 
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 10px;
-  grid-row-gap: 20px;
+  grid-row-gap: 20px; */
 `;
 
 export const ArticleBox = styled.div`
@@ -39,12 +39,12 @@ export const ArticleBox = styled.div`
   border: 0;
   border-radius: 0.25rem;
 
-  transition: border 0.2s;
+  /* transition: border 0.2s; */
 
-  &:hover {
+  /* &:hover {
     border: 0.2rem solid var(--blue);
     cursor: pointer;
-  }  
+  }   */
 
 `;
 

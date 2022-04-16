@@ -9,7 +9,7 @@ import { ReviewItem } from "./ReviewItem";
 
 import { Container, Context } from "./styles";
 
-export const Article = (props) => {
+export const Article = () => {
   const { slug } = useParams();
   const [article, setArticle] = useState({});
   const [review, setReview] = useState({});
@@ -23,7 +23,7 @@ export const Article = (props) => {
       setArticle(response.data);
       setLoaded(true);
     });
-  }, [slug]);
+  }, [review]);
 
   const handleChange = (e) => {
     e.preventDefault();

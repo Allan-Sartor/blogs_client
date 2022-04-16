@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal/lib/components/Modal";
-
-import { Button } from "../Button";
+import closeImg from '../../assets/close.svg';
 
 import { Container, Content, ModalContainer } from "./styles";
-import closeImg from '../../assets/close.svg';
+
 import { api } from "../../services/api";
+
+import { Button } from "../Button";
 
 export const Header = () => {
   const [isOpenNewArticleModalOpen, setIsOpenNewArticleModalOpen] = useState(false)
 
-  const [ title, setTitle ] = useState("");
-  const [ body, setBody ] = useState("");
-  const [ article, setArticle ] = useState({})
-  const [ published, setPublished ] = useState(false)
-  
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [article, setArticle] = useState({})
+
   const handleOpenNewArticleModal = () => {
     setIsOpenNewArticleModalOpen(true);
   }
@@ -25,17 +25,14 @@ export const Header = () => {
 
   const handleSubmit = async () => {
     await api.post("articles", article)
-        .then((response) => setArticle(response.data))
-        .catch((err) => {
-          alert('Não foi possivel publicar seu artigo', err)
-          setPublished(true);
-        });
-    if (published) {
-      alert('Seu artigo foi publicado!')
-      setTitle("");
-      setBody("");
-      setArticle({})
-    }
+      .then((response) => setArticle(response.data))
+      .catch((err) => {
+        alert('Não foi possivel publicar seu artigo', err)
+      });
+    alert('Seu artigo foi publicado!')
+    setTitle("");
+    setBody("");
+    setArticle({})
   }
 
   return (
@@ -63,24 +60,24 @@ export const Header = () => {
               onChange={(e) => {
                 e.preventDefault();
                 setTitle(e.target.value)
-                setArticle(Object.assign({}, article, {title: title, body: body}))
+                setArticle(Object.assign({}, article, { title: title, body: body }))
               }}
               value={title || ""}
               type="text"
               name="title"
               placeholder="Titulo"
             />
-            <textarea 
+            <textarea
               onChange={(e) => {
                 e.preventDefault();
                 setBody(e.target.value)
-                setArticle(Object.assign({}, article, {title: title, body: body}))
-                
+                setArticle(Object.assign({}, article, { title: title, body: body }))
+
               }}
               value={body || ""}
               type="text"
               name="body"
-              placeholder="Descrição" 
+              placeholder="Descrição"
             />
             <Button type="submit" name="Cadastrar artigo" style="btn-success" />
           </ModalContainer>
