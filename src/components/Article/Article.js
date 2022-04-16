@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { api } from "../../services/api";
 
 import { ArticleInfo } from "./ArticleInfo";
@@ -15,6 +15,8 @@ export const Article = () => {
   const [review, setReview] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [isCreated, setIsCreated] = useState(false);
+  const [isDeletedArticle, setIsDeletedArticle] = useState(false);
+  const [slugInfo, setSlugInfo] = useState('');
 
   // Get data for article
   useEffect(() => {
@@ -24,7 +26,7 @@ export const Article = () => {
       setArticle(response.data);
       setLoaded(true);
     });
-  }, [isCreated]);
+  }, [isCreated || isDeletedArticle]);
 
   // Seting data for New Review
   const handleChange = (e) => {
@@ -49,6 +51,15 @@ export const Article = () => {
     });
   };
 
+  // Delete article and reviews
+  const handleDeleteArticle = async (slugInfo) => {
+    console.log('setSlug', slugInfo)
+    await api.delete("articles/", slugInfo)
+    setIsDeletedArticle(true);
+    alert('Seu artigo foi deletado!')
+  }
+
+
   // Seting score for Review
   const setRating = (score, e) => {
     e.preventDefault();
@@ -61,7 +72,7 @@ export const Article = () => {
   if (loaded && article.included) {
     reviews = article.included.map((item, index) => {
       return (
-      <ReviewItem key={index} attributes={item.attributes} />)
+        <ReviewItem key={index} attributes={item.attributes} />)
     });
   }
 
@@ -89,6 +100,16 @@ export const Article = () => {
             </div>
           </Context>
         )}
+        <Link to={'/'}>
+          <button
+            onClick={() => {
+              setSlugInfo(article.data.attributes.slug)
+              handleDeleteArticle(slugInfo)
+            }}
+          >
+            Deletar artigo
+          </button>
+        </Link>
       </Container>
     </>
   );
