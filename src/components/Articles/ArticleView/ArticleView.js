@@ -14,9 +14,7 @@ export const ArticleView = () => {
   const [article, setArticle] = useState({});
   const [review, setReview] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const [isCreated, setIsCreated] = useState(false);
-  const [isDeletedArticle, setIsDeletedArticle] = useState(false);
-  const [slugInfo, setSlugInfo] = useState('');
+  const [isCreatedReview, setIsCreatedReview] = useState(false);
 
   // Get data for article
   useEffect(() => {
@@ -25,8 +23,9 @@ export const ArticleView = () => {
     api.get(url).then((response) => {
       setArticle(response.data);
       setLoaded(true);
+      setIsCreatedReview(false);
     });
-  }, [isCreated || isDeletedArticle]);
+  }, [isCreatedReview]);
 
   // Seting data for New Review
   const handleChange = (e) => {
@@ -45,20 +44,12 @@ export const ArticleView = () => {
     await api.post("reviews/", { review, article_id }).then((response) => {
       const included = [...article.included, response.data.data];
       setArticle({ ...article, included });
-      setReview({ title: "", description: "", score: 0 });
-      setIsCreated(true);
-      alert("Analise publicada com sucesso!");
     });
+
+    setReview({ title: "", description: "", score: 0 });
+    setIsCreatedReview(true);
+    alert("Analise publicada com sucesso!");
   };
-
-  // Delete article and reviews
-  const handleDeleteArticle = async (slugInfo) => {
-    console.log('setSlug', slugInfo)
-    await api.delete("articles/", slugInfo)
-    setIsDeletedArticle(true);
-    alert('Seu artigo foi deletado!')
-  }
-
 
   // Seting score for Review
   const setRating = (score, e) => {
@@ -83,19 +74,14 @@ export const ArticleView = () => {
         {loaded && (
           <Context>
             <Link to={'/'}>
-              <button
-              // onClick={() => {
-              //   setSlugInfo(article.data.attributes.slug)
-              //   handleDeleteArticle(slugInfo)
-              // }}
-              >
-                Voltar
-              </button>
+              <button>Voltar</button>
             </Link>
+
             <ArticleInfo
               attributes={article.data.attributes}
               reviews={article.included}
             />
+
             <div className="review styles-box">
               <h1>Deixe sua avaliação</h1>
               <ReviewForm
@@ -105,6 +91,7 @@ export const ArticleView = () => {
                 review={review}
               />
             </div>
+
             <div className="evaluations styles-box">
               <h1>Avaliações</h1>
               {reviews}
