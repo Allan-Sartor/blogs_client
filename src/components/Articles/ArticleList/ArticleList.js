@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { ArticleBox, Container, Footer, Score } from './styles';
 
-import { Rating } from '../Rating/Rating';
+import { Rating } from '../../Rating/Rating';
 
-export const Articles = () => {
+export function ArticleList() {
   const [ articles, setArticles ] = useState([])
 
   // Get data for articles

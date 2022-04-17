@@ -7,6 +7,7 @@ import { Container, Content, ModalContainer } from "./styles";
 import { api } from "../../services/api";
 
 import { Button } from "../Button";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [isOpenNewArticleModalOpen, setIsOpenNewArticleModalOpen] = useState(false)
@@ -25,58 +26,57 @@ export const Header = () => {
   }
 
   // Create New Article
-  const hanldeCreateNewArticle = async () => {
-    await api.post("articles", article)
-      .then((response) => setArticle(response.data))
-      .catch((err) => {
-        alert('Não foi possivel publicar seu artigo', err)
-      });
-    alert('Seu artigo foi publicado!')
-    setTitle("");
-    setBody("");
+  const handleCreateNewArticle = async (event) => {
+    event.preventDefault();
+
+    setArticle({
+      article: {
+        title,
+        body
+      }
+    })
+
+    if (article) {
+      await api.post("articles", article).then((response) => console.log(response.data))
+      alert('Seu artigo foi publicado!')
+      // setTitle("");
+      // setBody("");
+    }
   }
-  
+
   return (
     <Container>
       <Content>
         <h1>Artigos</h1>
-        <button
-          type="button"
-          onClick={handleOpenNewArticleModal}
-        >
-          Novo artigo
-        </button>
+        <Link to={'/create-article'}>
+          <button
+            type="button"
+            // onClick={handleOpenNewArticleModal}
+          >
+            Novo artigo
+          </button>
+        </Link>
         <Modal
           isOpen={isOpenNewArticleModalOpen}
           onRequestClose={handleCloseNewArticleModal}
           overlayClassName="react-modal-overlay"
           className="react-modal-content"
         >
-          <ModalContainer onSubmit={hanldeCreateNewArticle}>
+          <ModalContainer onSubmit={handleCreateNewArticle}>
             <button type="button" onClick={handleCloseNewArticleModal} className="react-modal-close">
               <img src={closeImg} alt="Fechar modal"></img>
             </button>
             <h2>Cadastrar Artigo</h2>
             <input
-              onChange={(e) => {
-                e.preventDefault();
-                setTitle(e.target.value)
-                setArticle(Object.assign({}, article, { title: title, body: body }))
-              }}
+              onChange={e => setTitle(e.target.value)}
               value={title}
               type="text"
-              name="title"
               placeholder="Titulo"
             />
             <textarea
-              onChange={(e) => {
-                e.preventDefault();
-                setBody(e.target.value)
-                setArticle(Object.assign({}, article, { title: title, body: body }))
-              }}
+              onChange={e => setBody(e.target.value)}
               value={body}
               type="text"
-              name="body"
               placeholder="Descrição"
             />
             <Button type="submit" name="Cadastrar artigo" style="btn-success" />

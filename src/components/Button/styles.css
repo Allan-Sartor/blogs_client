@@ -1,8 +1,9 @@
 .btn-success {
   font-size: 1rem;
+  margin: 1rem 0 1rem 0;
   width: 100%;
   color: #FFF;
-  background: var(--green);
+  background: var(--blue-light);
   border: 0;
   padding: 0 2rem;
   border-radius: 0.25rem;
@@ -13,16 +14,17 @@
   transition: filter 0.2s;
 }
 
-.btn-sucess:hover {
+.btn-success:hover {
   filter: brightness(0.9);
 }
 
 .btn-delete {
   font-size: 1rem;
-  width: 12rem;
-  color: #FFF;
-  background: var(--red);
-  border: 0;
+  margin: 1rem 0 1rem 0;
+  width: 100%;
+  color: var(--red);
+  background: var(--shape);
+  border: 2px solid var(--red);
   padding: 0 2rem;
   border-radius: 0.25rem;
   height: 3rem;
@@ -32,8 +34,31 @@
   transition: filter 0.2s;
 }
 
-.btn-sucess:hover {
+.btn-delete:hover {
   filter: brightness(0.9);
+}
+
+.btn-return {
+  font-size: 1rem;
+  margin: 1rem 1rem 1rem 0;
+  width: 100%;
+  color: var(--blue-light);
+  background: var(--shape);
+  border: 2px solid var(--blue-light);
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  height: 3rem;
+  font-weight: bold;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  transition: 0.2s;
+}
+
+.btn-return:hover {
+  /* filter: brightness(0.9); */
+  color: var(--blue-light);
+  border: 2px solid (--blue-light);
+  background: #e7e7e7;
 }
 
 

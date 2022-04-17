@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Link, useParams } from "react-router-dom";
-import { api } from "../../services/api";
+import { api } from "../../../services/api";
 
 import { ArticleInfo } from "./ArticleInfo";
 import { ReviewForm } from "./ReviewForm";
@@ -9,7 +9,7 @@ import { ReviewItem } from "./ReviewItem";
 
 import { Container, Context } from "./styles";
 
-export const Article = () => {
+export const ArticleView = () => {
   const { slug } = useParams();
   const [article, setArticle] = useState({});
   const [review, setReview] = useState({});
@@ -71,6 +71,7 @@ export const Article = () => {
 
   if (loaded && article.included) {
     reviews = article.included.map((item, index) => {
+      console.log('review', reviews)
       return (
         <ReviewItem key={index} attributes={item.attributes} />)
     });
@@ -81,6 +82,16 @@ export const Article = () => {
       <Container>
         {loaded && (
           <Context>
+            <Link to={'/'}>
+              <button
+              // onClick={() => {
+              //   setSlugInfo(article.data.attributes.slug)
+              //   handleDeleteArticle(slugInfo)
+              // }}
+              >
+                Voltar
+              </button>
+            </Link>
             <ArticleInfo
               attributes={article.data.attributes}
               reviews={article.included}
@@ -100,16 +111,6 @@ export const Article = () => {
             </div>
           </Context>
         )}
-        <Link to={'/'}>
-          <button
-            onClick={() => {
-              setSlugInfo(article.data.attributes.slug)
-              handleDeleteArticle(slugInfo)
-            }}
-          >
-            Deletar artigo
-          </button>
-        </Link>
       </Container>
     </>
   );

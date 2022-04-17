@@ -130,7 +130,7 @@ export const Form = styled.form`
     font-size: 1rem;
     width: 23rem;
     color: #FFF;
-    background: var(--green);
+    background: var(--blue-light);
     border: 0;
     padding: 0 2rem;
     border-radius: 0.25rem;

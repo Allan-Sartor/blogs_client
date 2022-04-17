@@ -1,5 +1,5 @@
 import React from "react";
-import { Rating } from "../Rating/Rating";
+import { Rating } from "../../Rating/Rating";
 import { ContainerItem, RatingContainer } from "./styles";
 
 export const ReviewItem = (props) => {

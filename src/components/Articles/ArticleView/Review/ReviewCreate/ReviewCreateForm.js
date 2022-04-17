@@ -1,7 +1,8 @@
 import React from "react";
 import { Form, RatingBox, RatingContent } from "./styles";
+import { Button } from '../../../../Button'
 
-export const ReviewForm = (props) => {
+export const ReviewCreateForm = (props) => {
   const ratingOptions = [5, 4, 3, 2, 1].map((score, index) => {
     return (
       <>
@@ -39,7 +40,7 @@ export const ReviewForm = (props) => {
           <h5>Nota</h5>
           <RatingBox>{ratingOptions}</RatingBox>
         </RatingContent>
-      <button type="submit">Enviar avalição</button>
+      <Button type="submit" style="btn-success" name="Enviar avalição" />
     </Form>
   );
 };
