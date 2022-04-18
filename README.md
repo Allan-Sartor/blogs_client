@@ -43,7 +43,7 @@ Para o desenvolvimento do projeto, foram utilizados as principais ferramentas:
 ```
 3. Se tudo estiver certo, a aplicação irá iniciar no endereço http://localhost:3000/
 
-<br />
+<hr>
 
 <h3>Rodando à API</h3>
 
