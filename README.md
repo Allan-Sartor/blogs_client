@@ -84,7 +84,7 @@ Para o desenvolvimento do projeto, foram utilizados as principais ferramentas:
 1. Clone o repositório em sua maquina utilizando :
 
 ```sh
-  $ git clone https://github.com/Allan-Sartor-Pontomais/blogs_client
+  $ git clone https://github.com/Allan-Sartor-Pontomais/blogs_client.git
 ```
 2. Instale as dependencias do projeto :
 ```sh
