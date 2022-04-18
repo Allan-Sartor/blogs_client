@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 export default function ArticleCreateForm() {
   const { resetField, register, handleSubmit, watch, formState: { errors } } = useForm();
-  const [article, setArticle] = useState({});
+  const [ article, setArticle ] = useState({});
 
   // Watch captar eventos dos inputs
   // console.log(watch("title"));
