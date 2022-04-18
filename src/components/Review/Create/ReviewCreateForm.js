@@ -2,7 +2,8 @@ import React from "react";
 import { Form, RatingBox, RatingContent } from "./styles";
 import { Button } from '../../../../Button'
 
-export const ReviewCreateForm = (props) => {
+export function ReviewCreateForm(props) {
+  
   const ratingOptions = [5, 4, 3, 2, 1].map((score, index) => {
     return (
       <>

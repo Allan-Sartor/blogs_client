@@ -3,18 +3,17 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../../../services/api";
 
+import { Container, Context } from "./styles";
 import { ArticleInfo } from "./ArticleInfo";
 import { ReviewForm } from "./ReviewForm";
 import { ReviewItem } from "./ReviewItem";
 
-import { Container, Context } from "./styles";
-
-export const ArticleView = () => {
+export const ArticleShow = () => {
   const { slug } = useParams();
-  const [article, setArticle] = useState({});
-  const [review, setReview] = useState({});
-  const [loaded, setLoaded] = useState(false);
-  const [isCreatedReview, setIsCreatedReview] = useState(false);
+  const [ article, setArticle ] = useState({});
+  const [ review, setReview ] = useState({});
+  const [ loaded, setLoaded ] = useState(false);
+  const [ isCreatedReview, setIsCreatedReview ] = useState(false);
 
   // Get data for article
   useEffect(() => {
@@ -22,6 +21,7 @@ export const ArticleView = () => {
 
     api.get(url).then((response) => {
       setArticle(response.data);
+      console.log('')
       setLoaded(true);
       setIsCreatedReview(false);
     });
@@ -95,6 +95,10 @@ export const ArticleView = () => {
             <div className="evaluations styles-box">
               <h1>Avaliações</h1>
               {reviews}
+              {/* <ReviewList 
+                loaded={loaded}
+                reviews={article.included}
+              /> */}
             </div>
           </Context>
         )}

@@ -1,8 +1,8 @@
 import React from "react";
 import { Header } from "../components/Header/Header";
-import { ArticleList } from "../components/Articles/ArticleList/ArticleList";
+import { ArticleList } from "../components/Articles/List/ArticleList";
 
-export default function Home() {
+export default function ListArticle() {
   return (
     <>
       <Header />
