@@ -1,4 +1,4 @@
-### `Passos para rodar o front-end`
+<!-- ### `Passos para rodar o front-end`
 ### `1 Passo`
 
 ### `npm run build`
@@ -49,4 +49,57 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+
+<h2>
+  📃 Sobre a aplicação
+</h2>
+
+<i>Blog</i> é uma aplicação para publicar artigos. Podemos adicionar novos artigos,
+visualizar todos os artigos e deixar avaliações para os artigos publicados.
+
+<!-- <h2>📼 Prévia</h2>
+<p align="center">
+  <img src="" alt="Blog"/>
+</p> -->
+
+
+<h2>🔧 Ferramentas utilizadas</h2>
+Para o desenvolvimento do projeto, foram utilizados as principais ferramentas:
+<ul>
+  <li><a href="https://pt-br.reactjs.org/">ReactJS</a></li>
+  <li><a href="https://styled-components.com/">Styled-components</a></li>
+  <li><a href="https://react-hook-form.com/">React-Hook-Form</a></li>
+  <li><a href="https://axios-http.com/ptbr/docs/intro">Axios</a></li>
+</ul>
+
+<h2>⚙ Rodando a aplicação</h2>
+<ul>
+  <li>É <b>necessário</b> possuir o <a href="https://nodejs.org/en/">Node.js</a> em sua máquina.</li>
+  <li>Também é <b>preciso</b> ter um gerenciador de pacotes, seja o <a href="https://www.npmjs.com/">NPM</a> ou <a href="https://yarnpkg.com/">Yarn</a>.</li>
+</ul>
+
+<h3>Caso tudo esteja certo, basta seguir os passos abaixo.</h3>
+
+1. Clone o repositório em sua maquina utilizando :
+
+```sh
+  $ git clone https://github.com/Allan-Sartor-Pontomais/blogs_client
+```
+2. Instale as dependencias do projeto :
+```sh
+  $ npm install
+```
+3. Rode o projeto :
+```sh
+  $ npm start
+```
+3. Se tudo estiver certo, a aplicação irá iniciar no endereço http://localhost:3000/
+
+<br />
+
+E pronto, já é possivel vizualizar a aplicação.
+<hr>
+<h4 align="center">
+    By <a href="https://www.linkedin.com/in/allan-gustavo-aa6844131/" target="_blank">Allan Sartor</a>
+</h4>
