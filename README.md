@@ -51,9 +51,7 @@ Para o desenvolvimento do projeto, foram utilizados as principais ferramentas:
 
 <strong>Obs</strong>: O front sempre rodará na porta 3000, já à API sempre na 3001.
 
-<br />
-
-E pronto, já é possivel vizualizar a aplicação.
+E pronto, já é possivel acessar a aplicação.
 
 <hr>
 
