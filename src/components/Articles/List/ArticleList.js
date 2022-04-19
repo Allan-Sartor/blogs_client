@@ -7,7 +7,7 @@ import { Rating } from '../../Rating/Rating';
 
 import { api } from '../../../services/api';
 
-import { FaEye, FaRegEdit } from 'react-icons/fa'
+import { FaEye, FaRegEdit, FaTrash } from 'react-icons/fa'
 
 export function ArticleList() {
   const [articles, setArticles] = useState([])
@@ -38,15 +38,29 @@ export function ArticleList() {
 
           <ActionBox>
             <ButtonBox>
-              
               <Link to={`/articles/${i.attributes.slug}`}>
-                <FaEye size={24} color="rgba(0, 0, 0, 8.6)" />
+                <span data-tooltip="Visualizar artigo">
+                  <FaEye size={23} color="#363f5f" />
+                </span>
               </Link>
+
               <Link to={`/edit-article/${i.attributes.slug}`}>
-                <FaRegEdit size={24} color="rgba(0, 0, 0, 8.6)"/>
+                <span data-tooltip="Editar artigo">
+                  <FaRegEdit size={21} color="#363f5f" />
+                </span>
               </Link>
-              
+
+              <Link to={`/edit-article/${i.attributes.slug}`}>
+                <span data-tooltip="Deletar artigo">
+                  <FaTrash size={21} color="#363f5f" />
+                </span>
+              </Link>
             </ButtonBox>
+
+            <Score>
+              <p>Média de avalições:</p>
+              <Rating score={i.attributes.avg_score.toFixed(1)} />
+            </Score>
 
             <Footer>
               <span>
@@ -57,11 +71,6 @@ export function ArticleList() {
                 }
               </span>
             </Footer>
-
-            <Score>
-              <p>Média de avalições:</p>
-              <Rating score={i.attributes.avg_score.toFixed(1)} />
-            </Score>
           </ActionBox>
         </ArticleBox>
       ))}

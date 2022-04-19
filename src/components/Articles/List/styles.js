@@ -65,11 +65,43 @@ export const ButtonBox = styled.div`
 
   a {
     font-size: 1rem;
+    position: relative;
 
+    border-radius: 50%;
     transition: filter 0.2s;
-    
-    &:hover {
-      filter: brightness(0.8);
+
+    span {
+      border-radius: 50%;
+      display: flex;
     }
+
+    &:hover{
+      filter: brightness(0.9);
+      background: var(--shape);
+    }
+
+    [data-tooltip]:after {
+      display: none;
+      position: absolute;
+      top: -40px;
+      padding: 5px;
+      border-radius: 3px;
+      left: calc(100% + 3px);
+      content: attr(data-tooltip);
+      white-space: nowrap;
+      background-color: var(--shape);
+      color: var(--text-title);
+      font-weight: bold;
+      z-index: 99;
+    }
+
+    [data-tooltip]:hover:after {
+      display: block;
+    }
+
   }
+
+  
+
+  
 `
