@@ -10,12 +10,10 @@ export const ArticleInfo = (props) => {
     <div className="view-article styles-box">
       <ArticleView>
         <h1> {title} </h1>
-        <p>
-          {body}
-        </p>
+        <p> {body} </p>
       </ArticleView>
       <ReviewCount>
-        <p>{total} Análises de usuários</p>
+        <p> {total} Análises de usuários </p>
       </ReviewCount>
       <RatingContent>
         <Rating score={avg_score} />

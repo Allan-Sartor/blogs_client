@@ -20,14 +20,16 @@ export const Context = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
 }
+
 .review { 
   grid-area: 1 / 2 / 2 / 3;
 }
+
 .evaluations { 
   grid-area: 2 / 1 / 3 / 3; 
 }
+
 .styles-box {
   padding: 1rem;
   margin: 1rem 1rem 1rem;

@@ -1,19 +1,19 @@
 import React from "react";
 import { Form, RatingBox, RatingContent } from "./styles";
-import { Button } from '../../Button/index'
+import { Link } from "react-router-dom";
+import { Button } from "../../Button";
 
-export const ReviewForm = (props) => {
-  const ratingOptions = [5, 4, 3, 2, 1].map((score, index) => {
+export function ReviewForm(props) {
+  const ratingOptions = [5, 4, 3, 2, 1].map((score) => {
     return (
       <>
         <input
+          id={`rating-${score}`}
           type="radio"
-          key={index}
+          name="rating"
           value={score}
           checked={props.review.score === score}
-          name="rating"
           onChange={() => console.log("selected", score)}
-          id={`rating-${score}`}
         />
         <label onClick={props.setRating.bind(this, score)}></label>
       </>
@@ -40,7 +40,12 @@ export const ReviewForm = (props) => {
           <h5>Nota</h5>
           <RatingBox>{ratingOptions}</RatingBox>
         </RatingContent>
-      <Button type="submit" style="btn-success" name="Enviar avalição" />
+        <div>
+          <Button type="submit" style="btn-success" name="Enviar avalição" />
+          <Link to={'/'}>
+            <Button style="btn-return" name="Voltar" />
+          </Link>
+        </div>
     </Form>
   );
 };

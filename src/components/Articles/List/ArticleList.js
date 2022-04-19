@@ -4,27 +4,27 @@ import { Link } from 'react-router-dom';
 import { ArticleBox, Container, Footer, Score } from './styles';
 
 import { Rating } from '../../Rating/Rating';
+import { api } from '../../../services/api';
 
 export function ArticleList() {
   const [ articles, setArticles ] = useState([])
 
   // Get data for articles
   useEffect(() => {
-    async function fetchMyAPI() {
-      let url = "http://localhost:3001/api/v1/articles"
-      let response = await fetch(url);
-      response = await response.json();
-      setArticles(response.data);
-      console.log("List", response);
+    async function getListArticles() {
+      await api.get('articles')
+        .then((response) => setArticles(response.data.data))
+        .catch((err) => 
+          alert('Não foi possivel listar todos os artigos! Servidor OFF', err)
+        )
     }
-
-    fetchMyAPI()
+    getListArticles()
   }, []);
 
   return (
     <Container>
       { articles.map((i) => (
-          <ArticleBox key={i.attributes.slug}>
+          <ArticleBox key={i.id}>
             <div>
               <h1>{i.attributes.title}</h1>
               <p>{i.attributes.body}</p>

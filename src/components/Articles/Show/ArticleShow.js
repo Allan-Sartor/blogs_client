@@ -10,46 +10,53 @@ import { ReviewItem } from "./ReviewItem";
 
 export const ArticleShow = () => {
   const { slug } = useParams();
-  const [ article, setArticle ] = useState({});
-  const [ review, setReview ] = useState({});
-  const [ loaded, setLoaded ] = useState(false);
-  const [ isCreatedReview, setIsCreatedReview ] = useState(false);
+  const [article, setArticle] = useState({});
+  const [review, setReview] = useState({});
+  const [loaded, setLoaded] = useState(false);
+  const [isCreatedReview, setIsCreatedReview] = useState(false);
 
-  // Get data for article
+  // // Get data for article
   useEffect(() => {
-    const url = `articles/${slug}`;
-
-    api.get(url).then((response) => {
-      setArticle(response.data);
-      console.log('')
-      setLoaded(true);
-      setIsCreatedReview(false);
-    });
+    async function getArticle() {
+      let slugURL = slug
+      await api.get(`articles/${slugURL}`)
+        .then((response) => {
+          setArticle(response.data);
+          setIsCreatedReview(false);
+          setLoaded(true);
+        })
+        .catch((err) => alert('Não foi possivel encontrar as informações de seu artigo!', err))
+    }
+    getArticle()
   }, [isCreatedReview]);
 
   // Seting data for New Review
+  // console.log('Seting data for New Article:', review)
   const handleChange = (e) => {
     e.preventDefault();
-
     setReview(Object.assign({}, review, { [e.target.name]: e.target.value }));
-    // console.log('Seting data for New Article:', review)
   };
 
   // Create new Review for article
-  const handleCreateNewArticleReview = async (e) => {
+  async function handleCreateNewArticleReview(e) {
     e.preventDefault();
-
     const article_id = article.data.id;
 
-    await api.post("reviews/", { review, article_id }).then((response) => {
-      const included = [...article.included, response.data.data];
-      setArticle({ ...article, included });
-    });
+    await api.post("reviews/", { review, article_id })
+      .then((response) => {
+        const included = [...article.included, response.data.data];
+        setArticle({ ...article, included });
+        setIsCreatedReview(true)
+        setReview({ title: "", description: "", score: 0 });
+        alert("Analise publicada com sucesso!");
+        
+      })
+      .catch(err => {
+        alert("Analise não publicada!");
+        console.log(err);
+      })
+    }
 
-    setReview({ title: "", description: "", score: 0 });
-    setIsCreatedReview(true);
-    alert("Analise publicada com sucesso!");
-  };
 
   // Seting score for Review
   const setRating = (score, e) => {
@@ -61,17 +68,17 @@ export const ArticleShow = () => {
   let reviews
 
   if (loaded && article.included) {
-    reviews = article.included.map((item, index) => {
-      console.log('review', reviews)
+    reviews = article.included.map((item) => {
       return (
-        <ReviewItem key={index} attributes={item.attributes} />)
+        <ReviewItem key={item.id} attributes={item.attributes} />
+      )
     });
   }
 
   return (
     <>
       <Container>
-        {loaded && (
+        {loaded ? (
           <Context>
             <Link to={'/'}>
               <button>Voltar</button>
@@ -101,8 +108,8 @@ export const ArticleShow = () => {
               /> */}
             </div>
           </Context>
-        )}
+        ): <span>Sem informações</span>}
       </Container>
     </>
-  );
-};
+  )
+}

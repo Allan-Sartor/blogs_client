@@ -9,22 +9,30 @@ import { ContainerForm } from "./styles";
 import { Link } from "react-router-dom";
 
 export default function ArticleCreateForm() {
-  const { resetField, register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { resetField, register, handleSubmit, formState: { errors } } = useForm();
   const [ article, setArticle ] = useState({});
+  const [ isCreatedArticle, setCreatedArticle ] = useState(false);
 
-  // Watch captar eventos dos inputs
-  // console.log(watch("title"));
-  // console.log(watch("body"));
-
-  const handleCreateNewArticle = async (data) => {
+  // Create new Article
+  function handleCreateNewArticle(data) {
     setArticle(data);
 
-    await api.post("articles", article)
-      .then((response) => setArticle(response.data))
+    if (article) {
+      api.post("articles", article)
+        .then((r) => {
+          console.log('Cadastrado', r.data);
+          setCreatedArticle(true)
+        })
+        .catch(err => {console.log('Erro ao inserir dados', err)})
+    }
 
-    alert('Seu artigo foi publicado!')
-    resetField("title")
-    resetField("body")
+    if (isCreatedArticle === true) {
+      alert('Seu artigo foi publicado!')
+      resetField("title")
+      resetField("body")
+    } else {
+      alert('Não foi possível publicar seu artigo!')
+    }
   }
 
   return (
