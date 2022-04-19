@@ -28,6 +28,8 @@ export const ContainerForm = styled.div`
 
       font-weight: 400;
       font-size: 1rem;
+
+      resize: vertical;
     }
 
     textarea {

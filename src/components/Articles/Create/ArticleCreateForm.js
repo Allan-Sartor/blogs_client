@@ -1,50 +1,60 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup";
 
 import { api } from "../../../services/api";
 
 import { Button } from "../../../components/Button/index"
 
 import { ContainerForm } from "./styles";
-import { Link } from "react-router-dom";
+
+const schema = yup.object({
+  title: yup.string().min(10, "O titulo deve conter no minino 10 caracteres").required("O titulo é obrigatório"),
+  body: yup.string().max(200, "A descrição pode ter no máximo 200 caracteres").required("A descrição é obrigatória")
+}).required();
 
 export default function ArticleCreateForm() {
-  const { resetField, register, handleSubmit, formState: { errors } } = useForm();
-  const [ article, setArticle ] = useState({});
-  const [ isCreatedArticle, setCreatedArticle ] = useState(false);
+  const navigate = useNavigate();
+  const [isCreatedArticle, setIsCreatedArticle] = useState(false);
+  const { register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    defaultValues: {
+      title: '',
+      body: '',
+    },
+    resolver: yupResolver(schema)
+  },
+  );
 
   // Create new Article
-  function handleCreateNewArticle(data) {
-    setArticle(data);
-
-    if (article) {
-      api.post("articles", article)
-        .then((r) => {
-          console.log('Cadastrado', r.data);
-          setCreatedArticle(true)
-        })
-        .catch(err => {console.log('Erro ao inserir dados', err)})
-    }
-
-    if (isCreatedArticle === true) {
-      alert('Seu artigo foi publicado!')
-      resetField("title")
-      resetField("body")
-    } else {
-      alert('Não foi possível publicar seu artigo!')
-    }
+  async function handleCreateNewArticle(data) {
+    await api.post("articles", data)
+      .then((r) => {
+        alert('Seu artigo foi publicado!', r.data)
+        navigate('/')
+      })
+      .catch(err => {
+        alert('Não foi possível publicar seu artigo!', err)
+      })
   }
 
   return (
     <ContainerForm>
       <form onSubmit={handleSubmit(handleCreateNewArticle)}>
+
         <h1>Cadastre um novo artigo</h1>
 
-        <input placeholder="Titulo" {...register("title", { required: true })} />
-        {errors.title?.type === 'required' && <span>Este campo é obrigatório</span>}
+        <input placeholder="Titulo" {...register("title")} />
+        <span>{errors.title?.message}</span>
 
-        <textarea placeholder="Descrição"{...register("body", { required: true })} />
-        {errors.body && <span>Este campo é obrigatório</span>}
+        <textarea placeholder="Descrição"{...register("body")} />
+        <span>{errors.body?.message}</span>
 
         <div>
           <Link to={'/'}>
@@ -52,6 +62,7 @@ export default function ArticleCreateForm() {
           </Link>
           <Button type="submit" style="btn-success" name="Cadastrar" />
         </div>
+
       </form>
     </ContainerForm>
   );

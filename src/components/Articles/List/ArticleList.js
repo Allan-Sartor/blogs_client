@@ -39,6 +39,7 @@ export function ArticleList() {
               )}
             </Footer>
             <Link to={`/articles/${i.attributes.slug}`}>Leia mais</Link>
+            <Link to={`/edit-article/${i.attributes.slug}`}>Editar artigo</Link>
           </ArticleBox>
       ))}
     </Container>
