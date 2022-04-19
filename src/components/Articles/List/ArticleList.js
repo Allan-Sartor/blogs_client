@@ -45,6 +45,7 @@ export function ArticleList() {
               <Link to={`/edit-article/${i.attributes.slug}`}>
                 <FaRegEdit size={24} color="rgba(0, 0, 0, 8.6)"/>
               </Link>
+              
             </ButtonBox>
 
             <Footer>
