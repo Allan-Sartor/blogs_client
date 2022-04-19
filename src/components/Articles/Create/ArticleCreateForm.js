@@ -19,7 +19,6 @@ const schema = yup.object({
 
 export default function ArticleCreateForm() {
   const navigate = useNavigate();
-  const [isCreatedArticle, setIsCreatedArticle] = useState(false);
   const { register,
     handleSubmit,
     formState: { errors }

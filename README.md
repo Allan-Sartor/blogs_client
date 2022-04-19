@@ -17,6 +17,7 @@ Para o desenvolvimento do projeto, foram utilizados as principais ferramentas:
   <li><a href="https://pt-br.reactjs.org/">ReactJS</a></li>
   <li><a href="https://styled-components.com/">Styled-components</a></li>
   <li><a href="https://react-hook-form.com/">React-Hook-Form</a></li>
+  li><a href="https://blog.betrybe.com/desenvolvimento-web/yup/#1">Yup</a></li>
   <li><a href="https://axios-http.com/ptbr/docs/intro">Axios</a></li>
 </ul>
 

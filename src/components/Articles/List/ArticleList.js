@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ArticleBox, Container, Footer, Score } from './styles';
+import { ArticleBox, Body, Container, Footer, Score } from './styles';
 
 import { Rating } from '../../Rating/Rating';
 import { api } from '../../../services/api';
@@ -27,7 +27,9 @@ export function ArticleList() {
           <ArticleBox key={i.id}>
             <div>
               <h1>{i.attributes.title}</h1>
-              <p>{i.attributes.body}</p>
+              <Body>
+                {i.attributes.body}
+              </Body>
             </div>
             <Score>
               <Rating score={i.attributes.avg_score.toFixed(1)} />

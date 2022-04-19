@@ -3,12 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   max-width: 1120px;
   margin: 0 auto;
-
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 20px; */
 `;
 
 export const ArticleBox = styled.div`
@@ -53,5 +47,9 @@ export const Score = styled.div`
 `
 
 export const Footer = styled.div`
+  
+`
+
+export const Body = styled.div`
   
 `
