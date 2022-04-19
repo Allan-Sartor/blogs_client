@@ -10,9 +10,8 @@ import { Link, useParams } from "react-router-dom";
 
 export default function ArticleCreateForm() {
   const { slug } = useParams()
-  const { resetField, register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
   const [article, setArticle] = useState({})
-  const [articleNew, setArticleNew] = useState({})
   const [loaded, setLoaded] = useState(false)
   const [isUpdateArticle, setIsUpdateArticle] = useState(false)
 
@@ -30,21 +29,16 @@ export default function ArticleCreateForm() {
 
   // Update Article
   function handleUpdateArticle(data) {
-    setArticle(data);
-
-    if (article) {
-      api.put("articles", article)
-        .then((r) => {
-          console.log('Erro ao atulizar dados', r.data);
-          setIsUpdateArticle(true)
-        })
-        .catch(err => { console.log('Erro ao atualizar dados', err) })
-    }
+    console.log('data', data)
+    api.put(`articles/${data}`)
+      .then((r) => {
+        console.log('atulizar dados', r);
+        setIsUpdateArticle(true)
+      })
+      .catch(err => { console.log('Erro ao atualizar dados', err) })
 
     if (isUpdateArticle === true) {
       alert('Seu artigo foi Editado!')
-      resetField("title")
-      resetField("body")
     } else {
       alert('Não foi possível editar seu artigo!')
     }
@@ -57,11 +51,9 @@ export default function ArticleCreateForm() {
           <form onSubmit={handleSubmit(handleUpdateArticle)}>
             <h1>Editar: {article.attributes.title}</h1>
 
-            <input placeholder="Titulo" {...register("title", { required: true })} />
-            {errors.title?.type === 'required' && <span>Este campo é obrigatório</span>}
+            <input value={article.attributes.title} {...register("title")} />
 
-            <textarea placeholder="Descrição"{...register("body", { required: true })} />
-            {errors.body && <span>Este campo é obrigatório</span>}
+            <textarea value={article.attributes.body} {...register("body")} />
 
             <div>
               <Link to={'/'}>
