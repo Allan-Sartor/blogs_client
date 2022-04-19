@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import { ActionBox, ArticleBox, ArticleInfo, ButtonBox, Container, Footer, Score } from './styles';
-
-import { Rating } from '../../Rating/Rating';
-
+import { FaEye, FaRegEdit, FaTrash } from 'react-icons/fa'
 import { api } from '../../../services/api';
 
-import { FaEye, FaRegEdit, FaTrash } from 'react-icons/fa'
+import { Link } from 'react-router-dom';
+
+import { Rating } from '../../Rating/Rating';
+import { ActionBox, ArticleBox, ArticleInfo, ButtonBox, Container, Footer, Score } from './styles';
 
 export function ArticleList() {
   const [articles, setArticles] = useState([])

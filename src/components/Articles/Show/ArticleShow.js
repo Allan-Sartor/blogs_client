@@ -8,7 +8,7 @@ import { ArticleInfo } from "./ArticleInfo";
 import { ReviewForm } from "./ReviewForm";
 import { ReviewItem } from "./ReviewItem";
 
-export const ArticleShow = () => {
+export function ArticleShow() {
   const { slug } = useParams();
   const [article, setArticle] = useState({});
   const [review, setReview] = useState({});

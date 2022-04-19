@@ -21,10 +21,13 @@ export const ArticleBox = styled.div`
 export const ActionBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 1rem;
   width: 15rem;
+
+  margin-top: 1rem;
+
+  border-left: 2px solid var(--text-body);
 `
 
 export const Footer = styled.div`

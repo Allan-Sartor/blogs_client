@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -19,7 +19,8 @@ const schema = yup.object({
 
 export default function ArticleCreateForm() {
   const navigate = useNavigate();
-  const { register,
+  const { 
+    register,
     handleSubmit,
     formState: { errors }
   } = useForm({
@@ -43,6 +44,10 @@ export default function ArticleCreateForm() {
       })
   }
 
+  function handleRedirectList() {
+    navigate('/')
+  }
+
   return (
     <ContainerForm>
       <form onSubmit={handleSubmit(handleCreateNewArticle)}>
@@ -56,12 +61,9 @@ export default function ArticleCreateForm() {
         <span>{errors.body?.message}</span>
 
         <div>
-          <Link to={'/'}>
-            <Button style="btn-return" name="Voltar" />
-          </Link>
+          <Button onClick={handleRedirectList} style="btn-return" name="Voltar" />
           <Button type="submit" style="btn-success" name="Cadastrar" />
         </div>
-
       </form>
     </ContainerForm>
   );
