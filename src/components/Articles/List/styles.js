@@ -27,7 +27,7 @@ export const ArticleInfo = styled.div`
 
   p { 
     color: var(--text-body);
-    height: 7.65rem;
+    max-height: 100%;
   }
 `
 

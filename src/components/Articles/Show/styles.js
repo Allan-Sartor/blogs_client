@@ -9,18 +9,18 @@ export const Container = styled.div`
 `;
 
 export const Context = styled.div`
-.styles-box {
-  padding: 1rem;
-  margin: 1rem 1rem 1rem 0;
-  border-radius: 0.25rem;
-  background-color: var(--shape);
+  .styles-box {
+    padding: 1rem;
+    margin: 1rem 1rem 1rem 0;
+    border-radius: 0.25rem;
+    background-color: var(--shape);
 
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  h1 {
-    text-align: center;
-    color: var(--text-title);
-  }
+    h1 {
+      text-align: center;
+      color: var(--text-title);
+    }
 }
 
 `;
@@ -125,16 +125,29 @@ export const ContainerForm = styled.div`
 `
 
 export const ArticleView = styled.div`
-  h1 {
-    color: var(--text-title);
+  hr {
+    border-radius: 0.25rem;
+    background: var(--blue-light);
+  } 
+  
+  div:nth-child(1) {
+    display: flex;
+    align-items: flex-start;
+
+    h1 {
+      color: var(--text-title);
+    }
   }
-  p {
-    color: var(--text-body);
-    max-height: 19rem;
-    white-space: wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+
+  div:nth-child(2) {
+    p {
+      color: var(--text-body);
+      max-height: 19rem;
+      white-space: wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }  
 `
 
 export const ReviewCount = styled.div`
@@ -172,6 +185,22 @@ export const RatingContent = styled.div`
   text-align: center;
   font-size: 1rem;
   padding: 1rem 0 2rem 0;
+  
+  h5 {
+    color: var(--text-title);
+    font-weight: bold;
+  }
+`
+
+export const RatingContentInfo = styled.div`
+  text-align: center;
+  font-size: 1rem;
+  padding: 1rem 0 2rem 0;
+  
+  hr {
+    border-radius: 0.25rem;
+    background: var(--blue-light);
+  } 
 
   h5 {
     color: var(--text-title);

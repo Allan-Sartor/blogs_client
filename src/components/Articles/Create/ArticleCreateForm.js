@@ -13,7 +13,7 @@ import { ContainerForm } from "./styles";
 
 const schema = yup.object({
   title: yup.string().min(10, "O titulo deve conter no minino 10 caracteres").required("O titulo é obrigatório"),
-  body: yup.string().max(200, "A descrição pode ter no máximo 200 caracteres").required("A descrição é obrigatória")
+  body: yup.string().min(50, "A descrição pode ter no máximo 1000 caracteres").required("A descrição é obrigatória")
 }).required();
 
 export default function ArticleCreateForm() {

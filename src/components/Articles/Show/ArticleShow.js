@@ -68,11 +68,15 @@ export function ArticleShow() {
   let reviews
 
   if (loaded && article.included) {
-    reviews = article.included.map((item) => {
-      return (
-        <ReviewItem key={item.id} attributes={item.attributes} />
-      )
-    });
+    if (article.included.length > 0) {
+      reviews = article.included.map((item) => {
+        return (
+          <ReviewItem key={item.id} attributes={item.attributes} />
+        )
+      })
+    } else {
+      reviews = <span>Esse artigo não possui avaliações ainda...</span>
+    }
   }
 
   return (
@@ -86,7 +90,7 @@ export function ArticleShow() {
               reviews={article.included}
             />
 
-            <div className="review styles-box">
+            <div className="styles-box">
               <h1>Deixe sua avaliação</h1>
               <ReviewForm
                 handleChange={handleChange}
@@ -96,7 +100,7 @@ export function ArticleShow() {
               />
             </div>
 
-            <div className="evaluations styles-box">
+            <div className="styles-box">
               <h1>Avaliações</h1>
               {reviews}
             </div>
