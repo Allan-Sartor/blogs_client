@@ -16,6 +16,7 @@ export const ArticleInfo = (props) => {
         <p> {total} Análises de usuários </p>
       </ReviewCount>
       <RatingContent>
+        <p>Média de avalições:</p>
         <Rating score={avg_score} />
       </RatingContent>
     </div >
