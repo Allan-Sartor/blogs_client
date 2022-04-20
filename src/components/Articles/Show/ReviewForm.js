@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, RatingBox, RatingContent } from "./styles";
+import { ContainerForm, RatingBox, RatingContent } from "./styles";
 import { Link } from "react-router-dom";
 import { Button } from "../../Button";
 
@@ -21,7 +21,8 @@ export function ReviewForm(props) {
   });
 
   return (
-    <Form onSubmit={props.handleCreateNewArticleReview}>
+    <ContainerForm>
+      <form onSubmit={props.handleCreateNewArticleReview}>
         <input
           onChange={props.handleChange}
           value={props.review.title}
@@ -29,6 +30,7 @@ export function ReviewForm(props) {
           name="title"
           placeholder="Titulo"
         />
+
         <textarea
           onChange={props.handleChange}
           value={props.review.description}
@@ -36,16 +38,19 @@ export function ReviewForm(props) {
           name="description"
           placeholder="Descrição"
         />
+
         <RatingContent>
           <h5>Nota</h5>
           <RatingBox>{ratingOptions}</RatingBox>
         </RatingContent>
+        
         <div>
+          <Button type="submit" style="btn-success" name="Enviar avalição" />
           <Link to={'/'}>
             <Button style="btn-return" name="Voltar" />
           </Link>
-          <Button type="submit" style="btn-success" name="Enviar avalição" />
         </div>
-    </Form>
+      </form>
+    </ContainerForm>
   );
 };

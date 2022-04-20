@@ -10,7 +10,7 @@ export const ContainerForm = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    padding: 1rem 2rem;    
+    /* padding: 1rem 2rem;     */
 
     h1 {
       color: var(--text-title)
@@ -28,11 +28,6 @@ export const ContainerForm = styled.div`
 
       font-weight: 400;
       font-size: 1rem;
-    }
-
-    textarea:focus, input:focus {
-      border: 2px solid var(--blue-light);
-      outline: none;
     }
 
     textarea {

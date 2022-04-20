@@ -26,9 +26,7 @@ export function ArticleList() {
   
   async function handleDeleteArticle() {
     let article_slug = await slug
-
-    console.log(article_slug)
-
+    
     await api.delete(`articles/${article_slug}`)
       .then((resp) => {
         getArticleInfo()

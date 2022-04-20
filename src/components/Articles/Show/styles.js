@@ -9,30 +9,9 @@ export const Container = styled.div`
 `;
 
 export const Context = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-
-.view-article { 
-  grid-area: 1 / 1 / 2 / 2;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.review { 
-  grid-area: 1 / 2 / 2 / 3;
-}
-
-.evaluations { 
-  grid-area: 2 / 1 / 3 / 3; 
-} */
-
 .styles-box {
   padding: 1rem;
-  margin: 1rem 1rem 1rem;
+  margin: 1rem 1rem 1rem 0;
   border-radius: 0.25rem;
   background-color: var(--shape);
 
@@ -92,35 +71,39 @@ export const RatingBox = styled.div`
   }
 `
 
-export const Form = styled.form`
+export const ContainerForm = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
 
   input {
-    margin: 1rem;
-    width: 23rem;
-    height: 2rem;
-    background: var(--background);
-    border: none;
+    margin-top: 1rem;
+    width: 100%;
     padding: 0 0.40rem;
+    height: 2.2rem;
     border-radius: 0.25rem;
-    font-size: 1rem;
 
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 1px solid #d7d7d7;
+    background: #e7e9ee;
+
+    font-weight: 400;
+    font-size: 1rem;
   }
 
   textarea {
-    background: var(--background);
-    width: 23rem;
-    padding: 0.25rem 0.40rem;
-    height: 6rem;
-    border: none;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    resize: vertical;
-
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 1rem;
+      width: 100%;
+      padding: 0.25rem 0.40rem;
+      height: 8rem;
+      border-radius: 0.25rem;
+      
+      border: 1px solid #d7d7d7;
+      background: #e7e9ee;
+      
+      font-weight: 400;
+      font-size: 1rem;
+      
+      resize: vertical;
   }
 
   textarea:focus, input:focus{
@@ -128,25 +111,17 @@ export const Form = styled.form`
     outline: none;
   }
 
-  button {
-    font-size: 1rem;
-    width: 23rem;
-    color: #FFF;
-    background: var(--blue-light);
-    border: 0;
-    padding: 0 2rem;
-    border-radius: 0.25rem;
-    height: 3rem;
-    font-weight: bold;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /* div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
-    transition: filter 0.2s;
-
-    &:hover {
-      filter: brightness(0.9);
+    a {
+      width: 100%;
+      margin-right: 1rem;
     }
-  }
-
+  } */
 `
 
 export const ArticleView = styled.div`

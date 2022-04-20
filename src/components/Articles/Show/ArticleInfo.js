@@ -7,7 +7,7 @@ export const ArticleInfo = (props) => {
   const total = props.reviews.length
   
   return (
-    <div className="view-article styles-box">
+    <div className="styles-box">
       <ArticleView>
         <h1> {title} </h1>
         <p> {body} </p>

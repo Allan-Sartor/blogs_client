@@ -80,6 +80,7 @@ export function ArticleShow() {
       <Container>
         {loaded ? (
           <Context>
+
             <ArticleInfo
               attributes={article.data.attributes}
               reviews={article.included}
@@ -98,10 +99,6 @@ export function ArticleShow() {
             <div className="evaluations styles-box">
               <h1>Avaliações</h1>
               {reviews}
-              {/* <ReviewList 
-                loaded={loaded}
-                reviews={article.included}
-              /> */}
             </div>
           </Context>
         ): <span>Sem informações</span>}
