@@ -27,7 +27,7 @@ export const ActionBox = styled.div`
 
   margin-top: 1rem;
 
-  border-left: 2px solid var(--text-body);
+  border-left: 2px solid var(--blue-light);
 `
 
 export const Footer = styled.div`

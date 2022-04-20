@@ -2,12 +2,13 @@ import React from "react";
 
 import { Container, Content } from "./styles";
 import { Link } from "react-router-dom";
+import { Logo } from "../Logo/Logo";
 
 export function Header() {
   return (
     <Container>
       <Content>
-        <h1>Artigos</h1>
+        <Logo />
         <Link to={'/create-article'}>
           <button type="button">Novo artigo</button>
         </Link>
