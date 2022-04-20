@@ -8,23 +8,36 @@ import { Rating } from '../../Rating/Rating';
 import { ActionBox, ArticleBox, ArticleInfo, ButtonBox, Container, Footer, Score } from './styles';
 
 export function ArticleList() {
-  const [articles, setArticles] = useState([])
+  const [ articles, setArticles ] = useState([])
+  const [ slug, setSlug ] = useState('')
 
   // Get data for articles
   useEffect(() => {
-    async function getListArticles() {
-      await api.get('articles')
-        .then((response) => setArticles(response.data.data))
-        .catch((err) =>
-          alert('Não foi possivel listar todos os artigos! Servidor OFF', err)
-        )
-    }
-    getListArticles()
+    getArticleInfo()
   }, []);
+
+  function getArticleInfo() {
+    api.get('articles')
+    .then((response) => setArticles(response.data.data))
+    .catch((err) =>
+      alert('Não foi possivel listar todos os artigos! Servidor OFF', err)
+    )
+  }
+  
+  function handleDeleteArticle() {
+    let article_slug = slug
+
+    api.delete(`articles/${article_slug}`)
+      .then((response) => {
+        console.log(response)
+        getArticleInfo()
+        alert('Artigo deletado!')
+      })
+  }
 
   return (
     <Container>
-      {articles.map((i) => (
+      { articles.map((i) => (
         <ArticleBox key={i.id}>
 
           <ArticleInfo>
@@ -48,11 +61,14 @@ export function ArticleList() {
                 </span>
               </Link>
 
-              <Link to={`/edit-article/${i.attributes.slug}`}>
+              <button onClick={() => {
+                setSlug(i.attributes.slug)
+                handleDeleteArticle()
+              }}>
                 <span data-tooltip="Deletar artigo">
                   <FaTrash size={21} color="#363f5f" />
                 </span>
-              </Link>
+              </button>
             </ButtonBox>
 
             <Score>
