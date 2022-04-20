@@ -33,7 +33,9 @@ export default function ArticleCreateForm() {
 
   // Create new Article
   async function handleCreateNewArticle(data) {
-    await api.post("articles", data)
+    let dataArticle = await data
+
+    api.post("articles", dataArticle)
       .then((r) => {
         alert('Seu artigo foi publicado!', r.data)
         navigate('/')
