@@ -41,10 +41,10 @@ export function ReviewForm(props) {
           <RatingBox>{ratingOptions}</RatingBox>
         </RatingContent>
         <div>
-          <Button type="submit" style="btn-success" name="Enviar avalição" />
           <Link to={'/'}>
             <Button style="btn-return" name="Voltar" />
           </Link>
+          <Button type="submit" style="btn-success" name="Enviar avalição" />
         </div>
     </Form>
   );

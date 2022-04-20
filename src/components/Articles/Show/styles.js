@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Context = styled.div`
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
 
@@ -28,7 +28,7 @@ export const Context = styled.div`
 
 .evaluations { 
   grid-area: 2 / 1 / 3 / 3; 
-}
+} */
 
 .styles-box {
   padding: 1rem;

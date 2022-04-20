@@ -80,10 +80,6 @@ export function ArticleShow() {
       <Container>
         {loaded ? (
           <Context>
-            <Link to={'/'}>
-              <button>Voltar</button>
-            </Link>
-
             <ArticleInfo
               attributes={article.data.attributes}
               reviews={article.included}
