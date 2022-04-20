@@ -16,30 +16,33 @@ export function ArticleList() {
     getArticleInfo()
   }, []);
 
-  function getArticleInfo() {
-    api.get('articles')
+  async function getArticleInfo() {
+    await api.get('articles')
     .then((response) => setArticles(response.data.data))
     .catch((err) =>
       alert('Não foi possivel listar todos os artigos! Servidor OFF', err)
     )
   }
   
-  function handleDeleteArticle() {
-    let article_slug = slug
+  async function handleDeleteArticle() {
+    let article_slug = await slug
 
-    api.delete(`articles/${article_slug}`)
-      .then((response) => {
-        console.log(response)
+    console.log(article_slug)
+
+    await api.delete(`articles/${article_slug}`)
+      .then((resp) => {
         getArticleInfo()
-        alert('Artigo deletado!')
+        alert('Artigo deletado!', resp)
       })
+      .catch((err) => {
+        // alert('Não foi possivel deletar o artigo!', err)
+      });
   }
 
   return (
     <Container>
       { articles.map((i) => (
         <ArticleBox key={i.id}>
-
           <ArticleInfo>
             <h1>{i.attributes.title}</h1>
             <p>

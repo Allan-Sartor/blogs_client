@@ -18,35 +18,6 @@ export const ArticleBox = styled.div`
   border-radius: 0.25rem;
 `;
 
-export const ActionBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 15rem;
-
-  margin-top: 1rem;
-
-  border-left: 2px solid var(--blue-light);
-`
-
-export const Footer = styled.div`
-  p {
-    font-size: 1rem;
-    color: var(--text-body);
-  }
-`
-
-export const Score = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  p {
-    color: var(--text-body);
-  }
-`
-
 export const ArticleInfo = styled.div`
   width: 100%;
   
@@ -58,6 +29,18 @@ export const ArticleInfo = styled.div`
     color: var(--text-body);
     height: 7.65rem;
   }
+`
+
+export const ActionBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 15rem;
+
+  margin-top: 1rem;
+
+  border-left: 2px solid var(--blue-light);
 `
 
 export const ButtonBox = styled.div`
@@ -103,8 +86,21 @@ export const ButtonBox = styled.div`
     }
 
   }
+`
 
-  
+export const Score = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  
+  p {
+    color: var(--text-body);
+  }
+`
+
+export const Footer = styled.div`
+  p {
+    font-size: 1rem;
+    color: var(--text-body);
+  }
 `
