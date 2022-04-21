@@ -10,25 +10,26 @@ import { ReviewItem } from "./ReviewItem";
 
 export function ArticleShow() {
   const { slug } = useParams();
-  const [article, setArticle] = useState({});
-  const [review, setReview] = useState({});
-  const [loaded, setLoaded] = useState(false);
+  const [ article, setArticle ] = useState({});
+  const [ review, setReview ] = useState({});
+  const [ loaded, setLoaded] = useState(false);
   const [isCreatedReview, setIsCreatedReview] = useState(false);
 
   // // Get data for article
   useEffect(() => {
-    async function getArticle() {
-      let slugURL = slug
-      await api.get(`articles/${slugURL}`)
-        .then((response) => {
-          setArticle(response.data);
-          setIsCreatedReview(false);
-          setLoaded(true);
-        })
-        .catch((err) => alert('Não foi possivel encontrar as informações de seu artigo!', err))
-    }
     getArticle()
   }, [isCreatedReview]);
+
+  async function getArticle() {
+    let slugURL = await slug
+    await api.get(`articles/${slugURL}`)
+      .then((response) => {
+        setArticle(response.data);
+        setIsCreatedReview(false);
+        setLoaded(true);
+      })
+      .catch((err) => alert('Não foi possivel encontrar as informações de seu artigo!', err))
+  }
 
   // Seting data for New Review
   // console.log('Seting data for New Article:', review)
@@ -56,8 +57,7 @@ export function ArticleShow() {
         console.log(err);
       })
     }
-
-
+    
   // Seting score for Review
   const setRating = (score, e) => {
     e.preventDefault();
