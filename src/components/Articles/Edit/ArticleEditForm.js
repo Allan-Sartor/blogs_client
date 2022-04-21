@@ -10,11 +10,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function ArticleCreateForm() {
   const { slug } = useParams()
+  const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [ article, setArticle ] = useState({})
   const [ articleNew, setArticleNew ] = useState({})
   const [ loaded, setLoaded ] = useState(false)
-  const navigate = useNavigate()
 
   useEffect(() => {
     getArticleInfo()
@@ -31,15 +31,13 @@ export default function ArticleCreateForm() {
   }
 
   // Update Article
-  const handleUpdateArticle = async (data) => {
+  async function handleUpdateArticle(data) {
     await setArticleNew(data)
-    console.log('ArticleNew', articleNew)
-    console.log('slug', slug)
 
-    api.patch(`articles/${slug}`, articleNew)
+    api.put(`articles/${slug}`, articleNew)
       .then((r) => {
-        console.log('Dados atualizados com sucesso', r.data)
-        getArticleInfo()
+        alert('Dados atualizados com sucesso', r.data)
+        navigate('/')
       })
       .catch(err => { 
         console.log('Erro ao atualizar seu artigo!', err) 
