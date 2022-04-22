@@ -2,8 +2,10 @@
   📃 Sobre a aplicação
 </h2>
 
-<i>Blog</i> é uma aplicação para publicar artigos. Podemos adicionar novos artigos,
-visualizar todos os artigos e deixar avaliações para os artigos publicados.
+<i>Blog</i> É uma aplicação para publicar artigos onde podemos adicionar novos artigos, editar artigos já existentes, apagar caso queira e
+visualizar todos os artigos.
+
+Juntamente com a possibilidade de avaliar cada artigo publicado com uma nota de avaliação!
 
 <!-- <h2>📼 Prévia</h2>
 <p align="center">

@@ -73,7 +73,7 @@ export function ArticleList() {
             </ButtonBox>
 
             <Score>
-              <p>Média de avalições:</p>
+              <p>Média de avaliações:</p>
               <Rating score={i.attributes.avg_score.toFixed(1)} />
             </Score>
 
