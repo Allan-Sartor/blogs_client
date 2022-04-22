@@ -32,6 +32,7 @@ export function ArticleShow() {
         {loaded ? (
           <Context>
             <ArticleInfo />
+            
             <div className="styles-box">
               <h1>Deixe sua avaliação</h1>
               <ReviewForm />

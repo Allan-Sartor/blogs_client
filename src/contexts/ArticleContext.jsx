@@ -4,7 +4,7 @@ import { api } from '../services/api';
 
 export const ArticleContext = createContext();
 
-export const ArticleProvider = ({children}) => {
+export const ArticleProvider = ({ children }) => {
   const { slug } = useParams();
 
   const [ article, setArticle ] = useState({});
@@ -12,7 +12,7 @@ export const ArticleProvider = ({children}) => {
   const [ loaded, setLoaded ] = useState(false);
   const [ review, setReview ] = useState({});
 
-   // // Get data for article
+   // Get data for article
    useEffect(() => {
     getArticle()
   }, [isCreatedReview]);
