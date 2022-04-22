@@ -7,7 +7,7 @@ import * as yup from "yup";
 
 import { api } from "../../../services/api";
 
-import { Button } from "../../../components/Button/index"
+import { Button } from "../../Button/index"
 
 import { ContainerForm } from "./styles";
 

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { api } from "../../../services/api";
 
-import { Button } from "../../../components/Button/index"
+import { Button } from "../../Button/index"
 
 import { ContainerForm } from "./styles";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -11,7 +11,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 export default function ArticleCreateForm() {
   const { slug } = useParams()
   const navigate = useNavigate()
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  
+  const { register, handleSubmit } = useForm()
   const [ article, setArticle ] = useState({})
   const [ articleNew, setArticleNew ] = useState({})
   const [ loaded, setLoaded ] = useState(false)
@@ -21,8 +22,8 @@ export default function ArticleCreateForm() {
   }, [])
 
   // // Get data for article
-  async function getArticleInfo() {
-    await api.get(`articles/${slug}`)
+  function getArticleInfo() {
+    api.get(`articles/${slug}`)
       .then((response) => {
         setArticle(response.data.data)
         setLoaded(true)
@@ -31,16 +32,16 @@ export default function ArticleCreateForm() {
   }
 
   // Update Article
-  async function handleUpdateArticle(data) {
-    await setArticleNew(data)
+  function handleUpdateArticle(data) {
+    setArticleNew(data)
 
     api.put(`articles/${slug}`, articleNew)
       .then((r) => {
         alert('Dados atualizados com sucesso', r.data)
         navigate('/')
       })
-      .catch(err => { 
-        console.log('Erro ao atualizar seu artigo!', err) 
+      .catch(err => {
+        console.log('Erro ao atualizar seu artigo!', err)
       })
   }
 

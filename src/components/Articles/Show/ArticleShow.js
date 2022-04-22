@@ -1,68 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 
-import { Link, useParams } from "react-router-dom";
-import { api } from "../../../services/api";
-
-import { Container, Context } from "./styles";
 import { ArticleInfo } from "./ArticleInfo";
 import { ReviewForm } from "./ReviewForm";
 import { ReviewItem } from "./ReviewItem";
 
+import { ArticleContext } from "../../../contexts/ArticleContext";
+
+import { Container, Context } from "./styles";
+
 export function ArticleShow() {
-  const { slug } = useParams();
-  const [ article, setArticle ] = useState({});
-  const [ review, setReview ] = useState({});
-  const [ loaded, setLoaded] = useState(false);
-  const [isCreatedReview, setIsCreatedReview] = useState(false);
-
-  // // Get data for article
-  useEffect(() => {
-    getArticle()
-  }, [isCreatedReview]);
-
-  async function getArticle() {
-    let slugURL = await slug
-    await api.get(`articles/${slugURL}`)
-      .then((response) => {
-        setArticle(response.data);
-        setIsCreatedReview(false);
-        setLoaded(true);
-      })
-      .catch((err) => alert('Não foi possivel encontrar as informações de seu artigo!', err))
-  }
-
-  // Seting data for New Review
-  // console.log('Seting data for New Article:', review)
-  const handleChange = (e) => {
-    e.preventDefault();
-    setReview(Object.assign({}, review, { [e.target.name]: e.target.value }));
-  };
-
-  // Create new Review for article
-  async function handleCreateNewArticleReview(e) {
-    e.preventDefault();
-    const article_id = article.data.id;
-
-    await api.post("reviews/", { review, article_id })
-      .then((response) => {
-        const included = [...article.included, response.data.data];
-        setArticle({ ...article, included });
-        setIsCreatedReview(true)
-        setReview({ title: "", description: "", score: 0 });
-        alert("Analise publicada com sucesso!");
-        
-      })
-      .catch(err => {
-        alert("Analise não publicada!");
-        console.log(err);
-      })
-    }
-    
-  // Seting score for Review
-  const setRating = (score, e) => {
-    e.preventDefault();
-    setReview({ ...review, score });
-  };
+  const { article, loaded, change, handlecreate, setrating, review } = useContext(ArticleContext) 
 
   // Listing reviews for article
   let reviews
@@ -84,18 +31,16 @@ export function ArticleShow() {
       <Container>
         {loaded ? (
           <Context>
-
             <ArticleInfo
               attributes={article.data.attributes}
               reviews={article.included}
             />
-
             <div className="styles-box">
               <h1>Deixe sua avaliação</h1>
               <ReviewForm
-                handleChange={handleChange}
-                handleCreateNewArticleReview={handleCreateNewArticleReview}
-                setRating={setRating}
+                handleChange={change}
+                handleCreateNewArticleReview={handlecreate}
+                setRating={setrating}
                 review={review}
               />
             </div>
@@ -105,7 +50,7 @@ export function ArticleShow() {
               {reviews}
             </div>
           </Context>
-        ): <span>Sem informações</span>}
+        ) : <span>Sem informações</span>}
       </Container>
     </>
   )
