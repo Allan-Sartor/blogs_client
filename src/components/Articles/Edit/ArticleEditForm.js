@@ -11,9 +11,9 @@ import { Link, useParams } from "react-router-dom";
 export default function ArticleCreateForm() {
   const { slug } = useParams()
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const [article, setArticle] = useState({})
-  const [loaded, setLoaded] = useState(false)
-  const [isUpdateArticle, setIsUpdateArticle] = useState(false)
+  const [ article, setArticle ] = useState({})
+  const [ loaded, setLoaded ] = useState(false)
+  const [ isUpdateArticle, setIsUpdateArticle ] = useState(false)
 
   // // Get data for article
   useEffect(() => {
