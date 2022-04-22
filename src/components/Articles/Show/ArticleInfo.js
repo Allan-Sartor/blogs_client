@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Rating } from "../../Rating/Rating";
 import { ArticleView, RatingContentInfo, ReviewCount } from "./styles";
 
-export const ArticleInfo = (props) => {
-  const { title, body, avg_score } = props.attributes
-  const total = props.reviews.length
+import { ArticleContext } from "../../../contexts/ArticleContext"
+
+export const ArticleInfo = () => {
+  const { article } = useContext(ArticleContext)
+  const total = article.included.length
 
   return (
     <div className="styles-box">
       <ArticleView>
         <div>
-          <h1> {title} </h1>
+          <h1> {article.data.attributes.title} </h1>
         </div>
         <hr size="6" />
         <div>
-          <p> {body} </p>
+          <p> {article.data.attributes.body} </p>
         </div>
       </ArticleView>
       <RatingContentInfo>
@@ -23,7 +25,7 @@ export const ArticleInfo = (props) => {
           <p> {total} Análises de usuários </p>
         </ReviewCount>
         <p>Média de avalições:</p>
-        <Rating score={avg_score} />
+        <Rating score={article.data.attributes.avg_score} />
       </RatingContentInfo>
     </div >
   )

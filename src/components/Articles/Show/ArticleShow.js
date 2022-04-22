@@ -9,7 +9,7 @@ import { ArticleContext } from "../../../contexts/ArticleContext";
 import { Container, Context } from "./styles";
 
 export function ArticleShow() {
-  const { article, loaded, change, handlecreate, setrating, review } = useContext(ArticleContext) 
+  const { article, loaded } = useContext(ArticleContext) 
 
   // Listing reviews for article
   let reviews
@@ -31,18 +31,10 @@ export function ArticleShow() {
       <Container>
         {loaded ? (
           <Context>
-            <ArticleInfo
-              attributes={article.data.attributes}
-              reviews={article.included}
-            />
+            <ArticleInfo />
             <div className="styles-box">
               <h1>Deixe sua avaliação</h1>
-              <ReviewForm
-                handleChange={change}
-                handleCreateNewArticleReview={handlecreate}
-                setRating={setrating}
-                review={review}
-              />
+              <ReviewForm />
             </div>
 
             <div className="styles-box">

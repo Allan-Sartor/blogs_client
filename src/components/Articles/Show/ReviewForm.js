@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ContainerForm, RatingBox, RatingContent } from "./styles";
 import { Link } from "react-router-dom";
 import { Button } from "../../Button";
+import { ArticleContext } from "../../../contexts/ArticleContext";
 
-export function ReviewForm(props) {
+export function ReviewForm() {
+  const { setrating, change, handlecreate, review } = useContext(ArticleContext)
+
   const ratingOptions = [5, 4, 3, 2, 1].map((score) => {
     return (
       <>
@@ -12,28 +15,28 @@ export function ReviewForm(props) {
           type="radio"
           name="rating"
           value={score}
-          checked={props.review.score === score}
+          checked={review.score === score}
           onChange={() => console.log("selected", score)}
         />
-        <label onClick={props.setRating.bind(this, score)}></label>
+        <label onClick={setrating.bind(this, score)}></label>
       </>
     );
   });
 
   return (
     <ContainerForm>
-      <form onSubmit={props.handleCreateNewArticleReview}>
+      <form onSubmit={handlecreate}>
         <input
-          onChange={props.handleChange}
-          value={props.review.title}
+          onChange={change}
+          value={review.title}
           type="text"
           name="title"
           placeholder="Titulo"
         />
 
         <textarea
-          onChange={props.handleChange}
-          value={props.review.description}
+          onChange={change}
+          value={review.description}
           type="text"
           name="description"
           placeholder="Descrição"
