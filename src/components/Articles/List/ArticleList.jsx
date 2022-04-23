@@ -25,7 +25,7 @@ export function ArticleList() {
   }
   
   async function handleDeleteArticle() {
-    let article_slug = await slug
+    let article_slug = slug
     
     await api.delete(`articles/${article_slug}`)
       .then((resp) => {
