@@ -17,7 +17,7 @@ export function ArticleList() {
   }, []);
 
   async function getArticleInfo() {
-    await api.get('articles')
+    await api.get('articles?page=1&per_page=5')
     .then((response) => setArticles(response.data.data))
     .catch((err) =>
       alert('Não foi possivel listar todos os artigos! Servidor OFF', err)
