@@ -5,21 +5,28 @@ import { api } from '../../../services/api';
 import { Link } from 'react-router-dom';
 
 import { Rating } from '../../Rating/Rating';
+import { Pagination } from '../../Pagination/Pagination';
 
-import { ActionBox, ArticleBox, ArticleInfo, ButtonBox, Container, Footer, Score } from './styles';
+import { ActionBox, ArticleBox, ArticleInfo, ButtonBox, Container, Footer, FooterPagination, Score } from './styles';
 import { FaEye, FaRegEdit, FaTrash } from 'react-icons/fa'
 
 export function ArticleList() {
   const [articles, setArticles] = useState([])
+  const [pagesInfo, setPagesInfo] = useState([])
+  const [offSet, setOffSet] = useState(0)
 
   // Get data for articles
   useEffect(() => {
     getArticleInfo()
-  }, []);
+  }, [offSet]);
 
-  async function getArticleInfo() {
-    await api.get('articles?page=1&per_page=5')
-      .then((response) => setArticles(response.data.data))
+  function getArticleInfo() {
+    api.get(`articles?page=${offSet}`)
+      .then((response) => {
+        setArticles(response.data.data)
+        setPagesInfo(response.data.meta)
+        console.log(response.data.meta)
+      })
       .catch((err) =>
         alert('Não foi possivel listar todos os artigos! Servidor OFF', err)
       )
@@ -94,6 +101,14 @@ export function ArticleList() {
           </ActionBox>
         </ArticleBox>
       ))}
+      <FooterPagination>
+        <Pagination
+          setOffSet={setOffSet}
+          offset={pagesInfo.current_page}
+          limit={pagesInfo.itemsPerPage}
+          total={pagesInfo.totalItems}
+        />
+      </FooterPagination>
     </Container>
   )
 }

@@ -141,3 +141,10 @@ export const Footer = styled.div`
     color: var(--text-body);
   }
 `
+
+export const FooterPagination = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 1rem 0;
+`

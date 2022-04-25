@@ -29,7 +29,7 @@ export function ArticleShow() {
   return (
     <>
       <Container>
-        {loaded ? (
+        { loaded ? (
           <Context>
             <ArticleInfo />
             
