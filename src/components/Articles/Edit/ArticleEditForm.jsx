@@ -14,7 +14,6 @@ export default function ArticleCreateForm() {
   
   const { register, handleSubmit } = useForm()
   const [ article, setArticle ] = useState({})
-  const [ articleNew, setArticleNew ] = useState({})
   const [ loaded, setLoaded ] = useState(false)
 
   useEffect(() => {
@@ -33,9 +32,7 @@ export default function ArticleCreateForm() {
 
   // Update Article
   function handleUpdateArticle(data) {
-    setArticleNew(data)
-
-    api.put(`articles/${slug}`, articleNew)
+    api.put(`articles/${slug}`, data)
       .then((r) => {
         alert('Dados atualizados com sucesso', r.data)
         navigate('/')
