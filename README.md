@@ -9,7 +9,7 @@ Juntamente com a possibilidade de avaliar cada artigo publicado com uma nota de 
 
 <h2>📼 Prévia</h2>
 <p align="center">
- <img src="https://media.giphy.com/media/XKcBCMoloWR3fDqqXm/giphy.gif"></img>
+ <img src="https://media.giphy.com/media/XKcBCMoloWR3fDqqXm/giphy.gif" width="100%"></img>
 </p>
 
 
