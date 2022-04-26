@@ -7,10 +7,10 @@ visualizar todos os artigos.
 
 Juntamente com a possibilidade de avaliar cada artigo publicado com uma nota de avaliação!
 
-<!-- <h2>📼 Prévia</h2>
+<h2>📼 Prévia</h2>
 <p align="center">
-  <img src="" alt="Blog"/>
-</p> -->
+ <iframe src="https://giphy.com/embed/XKcBCMoloWR3fDqqXm" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/XKcBCMoloWR3fDqqXm"></a></p>
+</p>
 
 
 <h2>🔧 Ferramentas utilizadas</h2>
