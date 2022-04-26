@@ -14,6 +14,7 @@ export function ArticleList() {
   const [articles, setArticles] = useState([])
   const [pagesInfo, setPagesInfo] = useState([])
   const [offSet, setOffSet] = useState(0)
+  const [loaded, setLoaded] = useState(false)
 
   // Get data for articles
   useEffect(() => {
@@ -25,7 +26,8 @@ export function ArticleList() {
       .then((response) => {
         setArticles(response.data.data)
         setPagesInfo(response.data.meta)
-        console.log(response.data.meta)
+        setLoaded(true)
+        console.log(response.data)
       })
       .catch((err) =>
         alert('Não foi possivel listar todos os artigos! Servidor OFF', err)
@@ -101,14 +103,17 @@ export function ArticleList() {
           </ActionBox>
         </ArticleBox>
       ))}
-      <FooterPagination>
-        <Pagination
-          setOffSet={setOffSet}
-          offset={pagesInfo.current_page}
-          limit={pagesInfo.itemsPerPage}
-          total={pagesInfo.totalItems}
-        />
-      </FooterPagination>
+      {loaded ? (
+        <FooterPagination>
+          <Pagination
+            setOffSet={setOffSet}
+            offset={pagesInfo.current_page}
+            limit={pagesInfo.itemsPerPage}
+            total={pagesInfo.totalItems}
+          />
+        </FooterPagination>
+      ) : null}
+
     </Container>
   )
 }

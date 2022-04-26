@@ -13,13 +13,14 @@ export const ListPagination = styled.ul`
     border-radius: 0.25rem;
     border: 0.15rem solid var(--blue);
     background: var(--blue-light);
+    color: white;
   }
 
   .active_button {
     background: var(--white);
     border: 0.15rem solid var(--blue);
     font-weight: bold;
-    color: var(--white);
+    color: black;
   }
 `
 
