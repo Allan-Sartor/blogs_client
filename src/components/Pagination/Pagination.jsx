@@ -35,7 +35,7 @@ export const Pagination = ({ limit, total, offset, setOffSet }) => {
               className={ page === currentPage ? 'active_button' : ''}
               onClick={() => { setOffSet(page--) }}
             >
-              { page }
+             { page }
             </button>
           </li>
         ))
